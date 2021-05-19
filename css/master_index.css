@@ -1,0 +1,484 @@
+/* Initialisation */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Assignation d'une nouvelle police */
+
+@font-face {
+    font-family: "Minion Pro Regular";
+    src: url("../fonts/minion.ttf");
+}
+
+/* Menu de navigation */
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0 20px 0;
+}
+
+#top_nav {
+    display: flex;  
+    align-items: flex-end;
+    margin: 0;
+}
+
+#logo {
+    width: 456px;
+    height: 118px;
+    margin: 0px 0 20px 0;
+}
+
+#chaine {
+    position: relative;
+    z-index: -5;
+
+    background-image: url("../images/chaine.png");
+    background-position: center;
+    background-size: cover;
+
+    width: 30px;
+    height: 160px;
+    top: 0px;
+    margin: 0 150px 0 150px;
+}
+
+nav {
+    position: relative;
+    z-index: 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: url("../images/wood_bg.jpg") repeat;
+    background-color: gray;
+    background-blend-mode: multiply;
+    background-size: 500px;
+
+    padding: 10px;
+    border-radius: .5rem;
+
+    box-shadow: 1px 1px 1vw black;
+}
+
+#demon_plaque {
+    background-image: url("../images/demon_plaque.png");
+}
+
+#demon_plaque:hover {
+    background-image: url("../images/demon_plaque_hover.png");
+}
+
+nav ul li {
+
+    color: lightgray;
+    list-style: none;
+
+    background-image: url("../images/plaque.png");
+    background-clip: content-box;
+    background-position: center;
+    background-size: 150px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1vw black;
+    
+    margin: 0 10px 0 10px;
+    width: 145px;
+    height: 45px;
+
+    transition: 0.1s;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li:hover {
+    transform: scale(1.1);
+    background-image: url("../images/plaque_hover.png");
+}
+
+nav ul li:hover > a {
+    color: white;
+}
+
+
+@media screen and (max-width: 992px) {
+    #logo {
+        margin: 20px 0 20px 0;
+        width: 270px;
+        height: 70px;
+    }
+
+    #chaine {
+        display: none;
+    }
+
+    nav ul li {
+        width: 50px;
+        height: 20px;
+        font-size: .2em;
+        border: 0px transparent solid;
+        box-shadow: 0 0 2vw black;
+    }
+
+    nav ul li:hover {
+        background-image: url("../images/plaque.png");
+    }
+}
+
+/* Propriétés générales de la page */
+
+html {
+    background-color: black;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Minion Pro Regular";
+}
+
+p a {
+    color: rgb(141, 51, 51);
+}
+
+#background {
+    background: url("../images/index_bg.jpg");
+    background-repeat: repeat;
+    background-size: auto;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+    transform: scale(1.2);
+    z-index: -5;
+}
+
+#fondu_gauche {
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    left: -800px;
+    left: 0;
+    z-index: 50;
+    background-color: black;
+    box-shadow: 0 0 10vw black;
+    animation: 3s ease-in-out 0s 1 normal forwards running ouvrirpanneau_gauche;
+
+    border-right: 120px transparent solid;
+    border-image: url("../images/bordure_panneau.png") 84 round;
+
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,0,0,.8) 100%), url("../images/panneau_bg.jpg");
+    background-color: rgb(80, 63, 63);
+    background-blend-mode: multiply;
+    background-size: contain;
+}
+
+#fondu_droit {
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    right: 0;
+    z-index: 50;
+    box-shadow: 0 0 10vw black;
+    animation: 3s ease-in-out 0s 1 normal forwards running ouvrirpanneau_droit;
+
+    border-left: 120px transparent solid;
+    border-image: url("../images/bordure_panneau.png") 84 round;
+
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,0,0,.8) 100%), url("../images/panneau_bg.jpg");
+    background-color: rgb(80, 63, 63);
+    background-blend-mode: multiply;
+    background-size: contain;
+
+}
+
+#poussiere_gauche {
+    position: absolute;
+    bottom: -25vh;
+    z-index: 100;
+    left: 540px;
+    height: 500px;
+    width: 1000px;
+    background-image: url("../images/dust.png");
+    background-position: center;
+    background-size: cover;
+    opacity: .4;
+
+    animation: poussiere_gauche 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#poussiere_droite {
+    position: absolute;
+    bottom: -25vh;
+    z-index: 100;
+    right: 540px;
+    height: 500px;
+    width: 1000px;
+    background-image: url("../images/dust.png");
+    background-position: center;
+    background-size: cover;
+    opacity: .4;
+    transform: scaleX(-1);
+
+    animation: poussiere_droite 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes poussiere_gauche {
+    from { 
+        left: 140px;
+    }
+    to { 
+        left: 0px;
+        opacity: 0;
+    }
+}
+
+@keyframes poussiere_droite {
+    from { 
+        right: 140px;
+    }
+    to { 
+        right: 0px;
+        opacity: 0;
+    }
+}
+
+@keyframes ouvrirpanneau_gauche {
+    from {
+        left: -130px;
+    }
+    to {
+        left: -800px;
+    }
+}
+
+@keyframes ouvrirpanneau_droit {
+    from {
+        right: -130px;
+    }
+    to {
+        right: -800px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #fondu_droit, #fondu_gauche, #poussiere_droite, #poussiere_gauche {
+        display: none;
+    }
+
+    #background {
+        filter: blur(5px);
+        transform: scale(1);
+    }
+}
+
+
+/* Création de la flexbox contenant tout le contenu */
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    margin-bottom: 80px;
+}
+
+@media screen and (max-width: 992px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Création de la flexbox contenant le texte */
+
+#panneau {
+
+    display: flex;
+    flex-direction: column;
+
+    height: 550px;
+    width: 800px;
+    z-index: 10;
+    border: 30px transparent solid;
+    background: url("../images/wood_bg.jpg") repeat;
+    background-color: gray;
+    background-blend-mode: multiply;
+    background-size: 500px;
+    text-align: justify;
+    box-shadow: 0 0 1vw black;
+    margin-bottom: 40px;
+
+    color: #f0dcc4;
+    
+    border-image: url("../images/bordure.png") 84 round;
+    border-radius: .5rem;
+
+}
+
+#fond_papier {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: 40px transparent solid;
+    border-image: url("../images/bordure_interieur.png") 60 round;
+    
+    height: 450px;
+    background-image: url("../images/fond.png");
+    background-color: #e9dcc0;
+    background-clip: content-box;
+    padding: 0;
+    margin-left: 26px;
+    margin-right: 26px;
+    
+}
+
+#index_banniere {
+
+    align-self: center;
+
+    background-image: url("../images/index_banniere.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 820px;
+}
+
+#texte_panneau {
+    padding: 10px;
+}
+
+#texte_panneau p {
+    color: black;
+    font-size: 1.2em;
+    margin: 10px 20px 10px 20px;
+}
+
+.italique {
+    font-style: italic;
+}
+
+#citation {
+    align-self: center;
+    text-align: center;
+
+}
+
+#citation p {
+    margin: 0;
+    padding: 0;
+}
+
+#panneau iframe {
+    box-shadow: 0 0 1vw black;
+    align-self: center;
+}
+
+/* Formulaire */
+form {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background: url("../images/wood_bg.jpg") repeat;
+    background-color: gray;
+    background-blend-mode: multiply;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 1vw black;
+}
+
+form div h1{
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+    background: url("../images/titre_fond.png");
+    background-position: center;
+    width: 240px;
+    background-size: cover;
+}
+
+form div #bouton{
+    margin-top: 10px;
+    border: none;
+    background-image: url("../images/plaque.png");
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    background-size: cover;
+    box-shadow: 0 0 1vw black;
+    transition: 0.1s;
+}
+
+form div #bouton:hover{
+    transform: scale(1.1);
+    color: white;
+    background-image: url("../images/plaque_hover.png");
+}
+
+@media screen and (max-width: 992px) {
+
+    #fond_papier {
+        height: 250px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    #panneau {
+        height: 350px;
+        width: 250px;
+    }
+
+    #panneau p {
+        font-size: 0.5em;
+    }
+
+    #texte_panneau {
+        padding: 2px;
+    }
+
+    #panneau iframe {
+        height: 100px;
+        align-self: center;
+    }
+
+    #index_banniere {
+        align-self: center;
+    
+        background-image: url("../images/index_banniere.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 50px;
+        width: 200px;
+    }
+    
+}
+
+
+
+
+

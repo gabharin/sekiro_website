@@ -1,0 +1,483 @@
+/* Initialisation */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Assignation d'une nouvelle police */
+
+@font-face {
+    font-family: "Minion Pro Regular";
+    src: url("../fonts/minion.ttf");
+}
+
+/* Menu de navigation */
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0 20px 0;
+}
+
+#top_nav {
+    display: flex;  
+    align-items: flex-end;
+    margin: 0;
+}
+
+#logo {
+    width: 456px;
+    height: 118px;
+    margin: 0px 0 20px 0;
+}
+
+#chaine {
+    position: relative;
+    z-index: 4;
+
+    background-image: url("../images/chaine.png");
+    background-position: center;
+    background-size: cover;
+
+    width: 30px;
+    height: 160px;
+    top: 0px;
+    margin: 0 150px 0 150px;
+}
+
+nav {
+    z-index: 5;
+}
+
+nav ul {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: url("../images/wood_bg.jpg") repeat;
+    background-color: gray;
+    background-blend-mode: multiply;
+    background-size: 500px;
+
+    padding: 10px;
+    border-radius: .5rem;
+
+    box-shadow: 1px 1px 1vw black;
+
+}
+
+nav ul li {
+
+    list-style: none;
+
+    background-image: url("../images/plaque.png");
+    background-clip: content-box;
+    background-position: center;
+    background-size: 150px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1vw black;
+    
+    margin: 0 10px 0 10px;
+    width: 145px;
+    height: 45px;
+
+    transition: 0.1s;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li:hover {
+    transform: scale(1.1);
+    background-image: url("../images/plaque_hover.png");
+}
+
+#demon_plaque {
+    background-image: url("../images/demon_plaque.png");
+}
+
+#demon_plaque:hover {
+    background-image: url("../images/demon_plaque_hover.png");
+}
+
+nav ul li:hover > a {
+    color: white;
+}
+
+@media screen and (max-width: 992px) {
+    #logo {
+        margin: 20px 0 20px 0;
+        width: 270px;
+        height: 70px;
+    }
+
+    #chaine {
+        display: none;
+    }
+
+    nav ul li {
+        width: 50px;
+        height: 20px;
+        font-size: .2em;
+        border: 0px transparent solid;
+        background-image: url("../images/plaque.png");
+        box-shadow: 0 0 2vw black;
+    }
+
+    nav ul li:hover {
+        transform: scale(1.1);
+        background-image: url("#");
+    }
+}
+
+/* Propriétés générales de la page */
+
+html {
+    background-color: black;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Minion Pro Regular";
+}
+
+p a {
+    color: rgb(141, 51, 51);
+}
+
+main {
+    z-index: 10;
+    margin-bottom: 80px;
+}
+
+#background {
+    background: url("../images/bg_html.jpg"); 
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+    transform: scale(1.2);
+    z-index: -6;
+}
+
+#pluie {
+    z-index: 0;
+    position: absolute;
+    background: url("../images/rain.png"); 
+    height: 120vh;
+    width: 100vw;
+    animation: pluie .3s linear infinite;
+}
+
+#eclair {
+    z-index: -4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 120vh;
+    width: 100vw;
+    background-color: rgb(255, 250, 225);
+    animation: eclair 10s linear infinite;
+    opacity: 0;
+}
+
+@media screen and (max-width: 992px) {
+    #pluie, #eclair {
+        display: none;
+    }
+}
+
+@keyframes pluie {
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: 20% 100%;
+    }
+}
+
+@keyframes eclair {
+    1% {
+        opacity: 0;
+    }
+    14% {
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    61% {
+        opacity: 1;
+    }
+    62% {
+        opacity: 0;
+    }
+    63% {
+        opacity: 1;
+    }
+    64% {
+        opacity: 0;
+    }
+}
+
+
+#fondu_gauche {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    left: -800px;
+    z-index: 50;
+    background-color: black;
+    box-shadow: 0 0 10vw black;
+    animation: 3s ease-in-out 0s 1 normal forwards running ouvrirpanneau_gauche;
+
+    border-right: 120px transparent solid;
+    border-image: url("../images/bordure_panneau.png") 84 round;
+
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,0,0,.8) 100%), url("../images/panneau_bg.jpg");
+    background-color: rgb(80, 63, 63);
+    background-blend-mode: multiply;
+    background-size: contain;
+}
+
+#fondu_droit {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    position: fixed;
+    height: 100%;
+    width: 50%;
+    right: -800px;
+    z-index: 50;
+    box-shadow: 0 0 10vw black;
+    animation: 3s ease-in-out 0s 1 normal forwards running ouvrirpanneau_droit;
+
+    border-left: 120px transparent solid;
+    border-image: url("../images/bordure_panneau.png") 84 round;
+
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0,0,0,.8) 100%), url("../images/panneau_bg.jpg");
+    background-color: rgb(80, 63, 63);
+    background-blend-mode: multiply;
+    background-size: contain;
+
+}
+
+@media screen and (max-width: 992px) {
+    #fondu_droit, #fondu_gauche {
+        display: none;
+    }
+
+    #background {
+        filter: blur(5px);
+        transform: scale(1);
+    }
+}
+
+
+/* Création de la flexbox contenant tout le contenu */
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 992px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Création de la flexbox contenant le portrait */
+
+#div_fantome {
+    width: 450px;
+}
+
+/* Image Isshin */
+
+#isshin {
+    position: absolute;
+    z-index: 0;
+    
+    top: 200px;
+    margin-right: 1400px;
+
+    height: 950px;
+    width: 1450px;
+
+    background: url("../images/isshin.png");
+    background-position: center;
+    background-size: cover;
+    filter: drop-shadow(0px 0px 10px black);
+
+}
+
+@media screen and (max-width: 992px) {
+    #isshin {
+        height: 475px;
+        width: 775px;
+        margin-right: 600px;
+    }
+}
+
+#banniere {
+    position: absolute;
+    z-index: -1;
+    top: 200px;
+    width: 180px;
+}
+
+@media screen and (max-width: 992px) {
+    #portrait {
+        position: relative;
+        z-index: 10;
+    
+        width: 110px;
+        height: 110px;
+    }
+
+    #panneau_portrait {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    
+        height: 80px;
+        width: 80px;
+    
+        margin: 0 0 20px 0;
+    
+    }
+
+    #banniere {
+        display: none;
+    }
+}
+
+/* Création de la flexbox contenant le texte et la musique */
+
+#panneau {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 700px;
+    width: 550px;
+    z-index: 10;
+    border: 30px transparent solid;
+    background: url("../images/wood_bg.jpg") repeat;
+    background-color: gray;
+    background-blend-mode: multiply;
+    background-size: 500px;
+    text-align: justify;
+    box-shadow: 0 0 1vw black;
+
+    color: #f0dcc4;
+    
+    border-image: url("../images/bordure.png") 84 round;
+    border-radius: .5rem;
+
+}
+
+#fond_papier {
+    border: 30px transparent solid;
+    border-image: url("../images/bordure_interieur.png") 60 round;
+    
+    background-image: url("../images/fond.png");
+    background-color: #e9dcc0;
+    background-clip: content-box;
+    padding: 0;
+    margin-left: 26px;
+    margin-right: 26px;
+    
+}
+
+#texte_panneau {
+    padding: 10px;
+}
+
+#texte_panneau p {
+    color: black;
+    font-size: 1.2em;
+    margin: 10px 20px 10px 20px;
+}
+
+#citation {
+    align-self: center;
+    text-align: center;
+
+}
+
+#citation p {
+    margin: 0;
+    padding: 0;
+}
+
+#panneau iframe {
+    box-shadow: 0 0 1vw black;
+    align-self: center;
+}
+
+@media screen and (max-width: 992px) {
+
+    #fond_papier {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    #panneau {
+        margin-left: 100px;
+        height: 400px;
+        width: 250px;
+    }
+
+    #panneau p {
+        font-size: 0.5em;
+    }
+
+    #texte_panneau {
+        padding: 2px;
+    }
+
+    #panneau iframe {
+        height: 100px;
+        align-self: center;
+    }
+}
+
+
+
+
+
